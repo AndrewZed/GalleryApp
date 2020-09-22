@@ -3,7 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:galleryapp/res/colors.dart';
 import 'package:galleryapp/res/styles.dart';
 import 'package:galleryapp/widgets/widgets.dart';
-
 import 'feed_screen.dart';
 
 class PhotoScreen extends StatelessWidget {
@@ -28,30 +27,7 @@ class PhotoScreen extends StatelessWidget {
                 width: 105,
                 child: LikeButton(true, 10),
               ),
-              SizedBox(
-                  height: 36,
-                  width: 105,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    child: FlatButton(
-                      child: Text('Save'),
-                      textColor: Colors.white,
-                      color: AppColors.dodgerBlue,
-                      onPressed: () {},
-                    ),
-                  )),
-              SizedBox(
-                  height: 36,
-                  width: 105,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    child: FlatButton(
-                      child: Text('Visit'),
-                      textColor: Colors.white,
-                      color: AppColors.dodgerBlue,
-                      onPressed: () {},
-                    ),
-                  )),
+              ButtonsGroup(),
             ],
           ))
     ]));
