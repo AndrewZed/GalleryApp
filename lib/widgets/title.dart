@@ -12,6 +12,6 @@ class MainTitle extends StatelessWidget {
       backgroundColor: Colors.transparent,
       centerTitle: true,
       shadowColor: Colors.transparent,
-      );
+    );
   }
 }

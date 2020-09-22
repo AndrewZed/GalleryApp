@@ -71,7 +71,7 @@ class _FeedState extends State<Feed> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('Andrew Bolshakov', style: AppStyles.h2Black),
+                    UserName('Andrew Bolshakov'),
                     Text('@AndrewZed',
                         style: AppStyles.h5Black
                             .copyWith(color: AppColors.manatee)),

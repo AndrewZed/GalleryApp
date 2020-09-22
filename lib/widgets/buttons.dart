@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:galleryapp/res/res.dart';
 
 class ButtonsGroup extends StatelessWidget {
-  ButtonsGroup();
+  ButtonsGroup({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
