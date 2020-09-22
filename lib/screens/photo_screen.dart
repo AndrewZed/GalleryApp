@@ -12,24 +12,31 @@ class PhotoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: <Widget>[
-      _buildItem(context),
-      Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              SizedBox(
-                height: 36,
-                width: 105,
-                child: LikeButton(true, 10),
-              ),
-              ButtonsGroup(),
-            ],
-          ))
-    ]));
+      //TODO use appBar: , для шапки. Почитай какие блоки есть у Scaffold
+
+      body: Column(
+        children: <Widget>[
+          _buildItem(context),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                SizedBox(
+                  height: 36,
+                  width: 105,
+                  child: LikeButton(true, 10),
+                ),
+                //TODO у тебя получился Row в Row.
+                ButtonsGroup(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildItem(BuildContext context) {
@@ -39,6 +46,7 @@ class PhotoScreen extends StatelessWidget {
           MainTitle(),
           HeroAnimation(
             heroTag: heroTag,
+            //TODO тебе не надо тут клик!
             onTap: () {
               Navigator.of(context).pop();
             },
@@ -61,6 +69,7 @@ class PhotoScreen extends StatelessWidget {
                   UserAvatar(
                       'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1'),
                   SizedBox(width: 6),
+                  //TODO выносить конкретный текст со стилем в отдельный виджет слишком "жирно", а вот оба поля (widget Column) - вполне годная идея, тем более тебе этот блок анимировать
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
