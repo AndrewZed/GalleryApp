@@ -38,12 +38,12 @@ class PhotoScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           MainTitle(),
-          Photo(
-            photoLink: kFlutterDash,
+          HeroAnimation(
             heroTag: heroTag,
             onTap: () {
               Navigator.of(context).pop();
             },
+            widget: Photo(photoLink: kFlutterDash),
           ),
           Description('This is Flutter dash. I love him'),
           _buildPhotoMeta(),

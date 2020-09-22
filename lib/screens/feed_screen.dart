@@ -34,18 +34,17 @@ class _FeedState extends State<Feed> {
   }
 
   Widget _buildItem(BuildContext context, index) {
-    String heroTag = index.toString();
+    String heroTag = 'photoscreenindex_'+index.toString();
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Photo(
-            photoLink: kFlutterDash,
+          HeroAnimation(
+            heroTag: heroTag,
             onTap: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => PhotoScreen(heroTag: heroTag)));
             },
-            heroTag: heroTag,
-          ),
+            widget: Photo(photoLink: kFlutterDash)),
           _buildPhotoMeta,
           Description('This is Flutter dash. I love him')
         ]);

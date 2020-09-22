@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:galleryapp/res/colors.dart';
 
 class Photo extends StatelessWidget {
-  Photo({Key key, this.photoLink, this.onTap, this.heroTag}) : super(key: key);
+  Photo({Key key, this.photoLink}) : super(key: key);
 
   final String photoLink;
-  final VoidCallback onTap;
-  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +16,7 @@ class Photo extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(17)),
         child: Container(
             color: AppColors.grayChateau,
-            child: Hero(
-                tag: heroTag,
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                  onTap: onTap,
-                  child: CachedNetworkImage(
+            child: CachedNetworkImage(
                     imageUrl: photoLink,
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),
@@ -33,8 +25,6 @@ class Photo extends StatelessWidget {
                   ),
                 )
               )
-            ),
-      ),
-    ));
+    );
   }
 }

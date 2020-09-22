@@ -5,3 +5,4 @@ export 'buttons.dart';
 export 'title.dart';
 export 'user_name.dart';
 export 'user_nickname.dart';
+export 'heroanimation.dart';
