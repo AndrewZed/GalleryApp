@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:galleryapp/res/colors.dart';
 import 'package:galleryapp/res/styles.dart';
 import 'package:galleryapp/widgets/widgets.dart';
+
 import 'feed_screen.dart';
 
 class PhotoScreen extends StatelessWidget {
@@ -60,6 +61,7 @@ class PhotoScreen extends StatelessWidget {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          MainTitle(),
           Photo(
             photoLink: kFlutterDash,
             heroTag: heroTag,
