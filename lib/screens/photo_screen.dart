@@ -11,7 +11,6 @@ class PhotoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 5.0;
     return Scaffold(
         body: Column(children: <Widget>[
       _buildItem(context),
