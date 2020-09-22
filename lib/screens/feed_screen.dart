@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:galleryapp/res/colors.dart';
-import 'package:galleryapp/res/styles.dart';
 import 'package:galleryapp/screens/photo_screen.dart';
+import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
 
 const kFlutterDash =
@@ -47,12 +47,7 @@ class _FeedState extends State<Feed> {
             heroTag: heroTag,
           ),
           _buildPhotoMeta,
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: (Text('This is Flutter dash. I love him',
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppStyles.h3.copyWith(color: AppColors.black))))
+          Description('This is Flutter dash. I love him')
         ]);
   }
 
@@ -72,9 +67,7 @@ class _FeedState extends State<Feed> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     UserName('Andrew Bolshakov'),
-                    Text('@AndrewZed',
-                        style: AppStyles.h5Black
-                            .copyWith(color: AppColors.manatee)),
+                    UserNickname('@AndrewZed'),
                   ],
                 )
               ],

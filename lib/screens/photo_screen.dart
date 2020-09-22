@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:galleryapp/res/colors.dart';
-import 'package:galleryapp/res/styles.dart';
+import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
 import 'feed_screen.dart';
 
@@ -45,12 +45,7 @@ class PhotoScreen extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: (Text('This is Flutter dash. I love him',
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppStyles.h3.copyWith(color: AppColors.black)))),
+          Description('This is Flutter dash. I love him'),
           _buildPhotoMeta(),
         ]);
   }
@@ -72,9 +67,7 @@ class PhotoScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       UserName('Andrew Bolshakov'),
-                      Text('@AndrewZed',
-                          style: AppStyles.h5Black
-                              .copyWith(color: AppColors.manatee)),
+                      UserNickname('@AndrewZed'),
                     ],
                   )
                 ],
