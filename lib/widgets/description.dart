@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:galleryapp/res/res.dart';
 
-//TODO название не очень подходит, у тебя в целом тут предполагается трехстрочный текст с паддингом.
-//TODO В данном примере еще допустимо, но старайся компонентам давать название как компоненту, а не конкретному применению
 class Description extends StatelessWidget {
   Description(this.description);
 

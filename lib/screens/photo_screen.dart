@@ -1,36 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:galleryapp/res/colors.dart';
+import 'package:galleryapp/res/res.dart';
 import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
 import 'feed_screen.dart';
 
 class PhotoScreen extends StatelessWidget {
   PhotoScreen({Key key, this.heroTag}) : super(key: key);
-  String heroTag;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO use appBar: , для шапки. Почитай какие блоки есть у Scaffold
-
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        title: Text('Photo', style: AppStyles.h1Black),
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        shadowColor: Colors.transparent,
+      ),
       body: Column(
         children: <Widget>[
           _buildItem(context),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
                   height: 36,
                   width: 105,
-                  child: LikeButton(true, 10),
+                  child: LikeButton(true, 10)),
+                SizedBox(width: 12),
+                CustomButton('Save'),
+                SizedBox(width: 12),
+                CustomButton('Visit'),
+                Divider(
+                  thickness: 2,
+                  color: AppColors.mercury,
                 ),
-                //TODO у тебя получился Row в Row.
-                ButtonsGroup(),
               ],
             ),
           ),
@@ -43,49 +57,40 @@ class PhotoScreen extends StatelessWidget {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          MainTitle(),
-          HeroAnimation(
-            heroTag: heroTag,
-            //TODO тебе не надо тут клик!
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            widget: Photo(photoLink: kFlutterDash),
+          Hero(
+            tag: heroTag,
+            child: Photo(photoLink: kFlutterDash),
           ),
           Description('This is Flutter dash. I love him'),
           _buildPhotoMeta(),
         ]);
   }
 
+// TODO row и column проверить на избыточность
   Widget _buildPhotoMeta() {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        child: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  UserAvatar(
-                      'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1'),
-                  SizedBox(width: 6),
-                  //TODO выносить конкретный текст со стилем в отдельный виджет слишком "жирно", а вот оба поля (widget Column) - вполне годная идея, тем более тебе этот блок анимировать
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      UserName('Andrew Bolshakov'),
-                      UserNickname('@AndrewZed'),
-                    ],
-                  )
-                ],
-              ),
-              Divider(
-                thickness: 2,
-                color: AppColors.mercury,
-              ),
-            ],
-          )
-        ]));
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                UserAvatar(
+                    'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1'),
+                SizedBox(width: 6),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('Andrew Bolshakov', style: AppStyles.h2Black),
+                    Text('@AndrewZed',
+                        style: AppStyles.h5Black
+                            .copyWith(color: AppColors.manatee)),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ));
   }
 }

@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:galleryapp/res/res.dart';
 
-class ButtonsGroup extends StatelessWidget {
-  ButtonsGroup({Key key}) : super(key: key);
+class CustomButton extends StatelessWidget {
+  CustomButton(this.title, {Key key}) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      _buildButton('Save'),
-      SizedBox(width: 12),
-      _buildButton('Visit'),
-    ]);
-  }
-}
-
-Widget _buildButton(String buttonText) {
-  return SizedBox(
+    return Container(
       height: 36,
       width: 105,
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(6)),
         child: FlatButton(
-          child: Text(buttonText),
+          child: Text(title),
           textColor: Colors.white,
           color: AppColors.dodgerBlue,
           onPressed: () {},
         ),
       ));
+   }
 }

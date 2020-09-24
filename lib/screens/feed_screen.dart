@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:galleryapp/res/colors.dart';
+import 'package:galleryapp/res/res.dart';
 import 'package:galleryapp/screens/photo_screen.dart';
 import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
@@ -34,17 +35,16 @@ class _FeedState extends State<Feed> {
   }
 
   Widget _buildItem(BuildContext context, index) {
-    String heroTag = 'photoscreenindex_'+index.toString();
+    String heroTag = 'photoscreenindex_' + index.toString();
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          HeroAnimation(
-            heroTag: heroTag,
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => PhotoScreen(heroTag: heroTag)));
-            },
-            widget: Photo(photoLink: kFlutterDash)),
+          GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PhotoScreen(heroTag: heroTag)));
+              },
+              child: Hero(tag: heroTag, child: Photo(photoLink: kFlutterDash))),
           _buildPhotoMeta,
           Description('This is Flutter dash. I love him')
         ]);
@@ -65,8 +65,10 @@ class _FeedState extends State<Feed> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    UserName('Andrew Bolshakov'),
-                    UserNickname('@AndrewZed'),
+                    Text('Andrew Bolshakov',
+                    style: AppStyles.h2Black),
+                    Text('@AndrewZed',
+                        style: AppStyles.h5Black.copyWith(color: AppColors.manatee)),
                   ],
                 )
               ],

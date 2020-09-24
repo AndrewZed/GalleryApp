@@ -35,18 +35,17 @@ class _LikeButtonState extends State<LikeButton> {
           else {likeCount--;}         
         });
       },
-      child: Center(
-        child: Padding(
+      child: Padding(
           padding: EdgeInsets.all(8),
           child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Icon(isLiked ? AppIcons.like_fill : AppIcons.like),
-                SizedBox(width: 4.21),
+                SizedBox(width: 4.6),
                 Text(likeCount.toString())
                  ],
             ),
           )
-      ),
     );
   }
 }
