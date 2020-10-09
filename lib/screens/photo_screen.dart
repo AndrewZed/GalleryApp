@@ -3,11 +3,41 @@ import 'package:galleryapp/res/colors.dart';
 import 'package:galleryapp/res/res.dart';
 import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
-import 'feed_screen.dart';
 
-class PhotoScreen extends StatelessWidget {
-  PhotoScreen({Key key, this.heroTag}) : super(key: key);
+class FullScreenImage extends StatefulWidget {
+  FullScreenImage(
+      {Key key,
+      this.heroTag,
+      this.altDescription,
+      this.userName,
+      this.name,
+      this.userPhoto,
+      this.kFlutterDash})
+      : super(key: key);
+
   final String heroTag;
+  final String altDescription;
+  final String userName;
+  final String name;
+  final String userPhoto;
+  final String kFlutterDash;
+
+  @override
+  _FullScreenImageState createState() => _FullScreenImageState();
+}
+
+class _FullScreenImageState extends State<FullScreenImage>
+    with TickerProviderStateMixin {
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 1500), vsync: this);
+    _controller.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +63,7 @@ class PhotoScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: 36,
-                  width: 105,
-                  child: LikeButton(true, 10)),
+                SizedBox(height: 36, width: 105, child: LikeButton(true, 10)),
                 SizedBox(width: 12),
                 CustomButton('Save'),
                 SizedBox(width: 12),
@@ -58,15 +85,14 @@ class PhotoScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Hero(
-            tag: heroTag,
-            child: Photo(photoLink: kFlutterDash),
+            tag: widget.heroTag,
+            child: Photo(photoLink: widget.kFlutterDash),
           ),
-          Description('This is Flutter dash. I love him'),
+          Description(widget.altDescription),
           _buildPhotoMeta(),
         ]);
   }
 
-// TODO row и column проверить на избыточность
   Widget _buildPhotoMeta() {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -75,19 +101,24 @@ class PhotoScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                UserAvatar(
-                    'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1'),
+                StaggerAnimation(
+                    controller: _controller.view,
+                    opacityEnd: 1,
+                    childWidget: UserAvatar(widget.userPhoto)),
                 SizedBox(width: 6),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Andrew Bolshakov', style: AppStyles.h2Black),
-                    Text('@AndrewZed',
-                        style: AppStyles.h5Black
-                            .copyWith(color: AppColors.manatee)),
-                  ],
-                )
+                StaggerAnimation(
+                    controller: _controller.view,
+                    opacityEnd: 0.5,
+                    childWidget: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(widget.name, style: AppStyles.h2Black),
+                        Text(widget.userName,
+                            style: AppStyles.h5Black
+                                .copyWith(color: AppColors.manatee)),
+                      ],
+                    ))
               ],
             ),
           ],

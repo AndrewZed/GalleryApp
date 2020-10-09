@@ -6,8 +6,7 @@ import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
 
 const kFlutterDash =
-    'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
-
+      'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
 class Feed extends StatefulWidget {
   Feed({Key key}) : super(key: key);
 
@@ -18,6 +17,11 @@ class Feed extends StatefulWidget {
 }
 
 class _FeedState extends State<Feed> {
+  final String userPhoto = 'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1';
+  final String altDescription = 'This is Flutter dash. I love him'; 
+  final String name = 'Andrew Bolshakov';
+  final String userName = '@AndrewZed';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +46,18 @@ class _FeedState extends State<Feed> {
           GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PhotoScreen(heroTag: heroTag)));
+                    builder: (context) => FullScreenImage(
+                      heroTag: heroTag, 
+                      altDescription: altDescription,
+                      userPhoto: userPhoto,
+                      name: name,
+                      userName: userName,
+                      kFlutterDash: kFlutterDash)));
+                      
               },
               child: Hero(tag: heroTag, child: Photo(photoLink: kFlutterDash))),
           _buildPhotoMeta,
-          Description('This is Flutter dash. I love him')
+          Description(altDescription)
         ]);
   }
 
@@ -58,17 +69,16 @@ class _FeedState extends State<Feed> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                UserAvatar(
-                    'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1'),
+                UserAvatar(userPhoto),
                 SizedBox(width: 6),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('Andrew Bolshakov',
-                    style: AppStyles.h2Black),
-                    Text('@AndrewZed',
-                        style: AppStyles.h5Black.copyWith(color: AppColors.manatee)),
+                    Text(name, style: AppStyles.h2Black),
+                    Text(userName,
+                        style: AppStyles.h5Black
+                            .copyWith(color: AppColors.manatee)),
                   ],
                 )
               ],
