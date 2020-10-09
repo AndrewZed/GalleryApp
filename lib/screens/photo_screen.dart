@@ -44,15 +44,17 @@ class _FullScreenImageState extends State<FullScreenImage>
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(Icons.arrow_back_ios), //TODO иконка то тоже белая...
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         title: Text('Photo', style: AppStyles.h1Black),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors
+            .transparent, //TODO старайся прозрачностью не пользоваться в таких случаях. или белый, или сетаешь деволтный стиль в тему
         centerTitle: true,
-        shadowColor: Colors.transparent,
+        shadowColor: Colors
+            .transparent, //TODO тень задается через elevation. Не нужна elevation = 0
       ),
       body: Column(
         children: <Widget>[
@@ -63,7 +65,11 @@ class _FullScreenImageState extends State<FullScreenImage>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 36, width: 105, child: LikeButton(true, 10)),
+                SizedBox(
+                    height: 36,
+                    width: 105,
+                    child: LikeButton(true,
+                        10)), //TODO у тебя custom button сделано через контейнер, тут SizedBox. Вообще по феншую Expanded - займет всю ширину под LikedButton
                 SizedBox(width: 12),
                 CustomButton('Save'),
                 SizedBox(width: 12),
@@ -102,6 +108,7 @@ class _FullScreenImageState extends State<FullScreenImage>
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 StaggerAnimation(
+                    //TODO не то
                     controller: _controller.view,
                     opacityEnd: 1,
                     childWidget: UserAvatar(widget.userPhoto)),
