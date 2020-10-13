@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class StaggerAnimation extends StatelessWidget {
   StaggerAnimation(
-      {Key key, this.controller, this.opacityEnd, this.childWidget})
+      {Key key, this.controller, this.intervalBegin, this.intervalEnd, this.childWidget})
       : opacity = Tween<double>(
-          begin: 0.0,
-          end: opacityEnd,
+          begin: 0,
+          end: 1,
         ).animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(
-              0.5,
-              1.000,
+              intervalBegin,
+              intervalEnd,
               curve: Curves.ease,
             ),
           ),
@@ -20,7 +20,8 @@ class StaggerAnimation extends StatelessWidget {
 
   final AnimationController controller;
   final Animation<double> opacity;
-  final double opacityEnd;
+  final double intervalBegin;
+  final double intervalEnd;
   final Widget childWidget;
 
   // This function is called each time the controller "ticks" a new frame.

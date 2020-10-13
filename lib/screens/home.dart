@@ -107,6 +107,7 @@ class BottomNavyBar extends StatelessWidget {
                   isSelected: currentTab == index,
                   item: item,
                   itemCornerRadius: itemCornerRadius,
+                  containerHeight: containerHeight,
                 ),
               );
             }).toList()),
@@ -122,6 +123,7 @@ class _ItemWidget extends StatelessWidget {
       @required this.backgroundColor,
       @required this.animationDuration,
       this.curve = Curves.linear,
+      this.containerHeight,
       @required this.itemCornerRadius})
       : assert(animationDuration != null, 'animationDuration is null'),
         assert(isSelected != null, 'isSelected is null'),
@@ -135,10 +137,12 @@ class _ItemWidget extends StatelessWidget {
   final Duration animationDuration;
   final Curve curve;
   final double itemCornerRadius;
+  final double containerHeight;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      height: containerHeight,
       duration: animationDuration,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       width: isSelected
