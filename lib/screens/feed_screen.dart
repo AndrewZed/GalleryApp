@@ -6,7 +6,8 @@ import 'package:galleryapp/widgets/description.dart';
 import 'package:galleryapp/widgets/widgets.dart';
 
 const kFlutterDash =
-      'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
+    'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
+
 class Feed extends StatefulWidget {
   Feed({Key key}) : super(key: key);
 
@@ -17,8 +18,9 @@ class Feed extends StatefulWidget {
 }
 
 class _FeedState extends State<Feed> {
-  final String userPhoto = 'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1';
-  final String altDescription = 'This is Flutter dash. I love him'; 
+  final String userPhoto =
+      'https://sun9-61.userapi.com/c9861/u10315956/a_7cec148f.jpg?ava=1';
+  final String altDescription = 'This is Flutter dash. I love him';
   final String name = 'Andrew Bolshakov';
   final String userName = '@AndrewZed';
 
@@ -39,21 +41,25 @@ class _FeedState extends State<Feed> {
   }
 
   Widget _buildItem(BuildContext context, index) {
-    String heroTag = 'photoscreenindex_' + index.toString();
+    String heroTag = 'feedItem_$index';
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => FullScreenImage(
-                      heroTag: heroTag, 
-                      altDescription: altDescription,
-                      userPhoto: userPhoto,
-                      name: name,
-                      userName: userName,
-                      kFlutterDash: kFlutterDash)));
-                      
+                Navigator.pushNamed(
+                    context,
+                    '/fullScreenImage',
+                    arguments: FullScreenImageArguments(
+                        routeSettings: RouteSettings(
+                          arguments: 'Some title'
+                        ),
+                        heroTag: heroTag,
+                        altDescription: altDescription,
+                        userPhoto: userPhoto,
+                        name: name,
+                        userName: userName,
+                        photo: kFlutterDash));
               },
               child: Hero(tag: heroTag, child: Photo(photoLink: kFlutterDash))),
           _buildPhotoMeta,
@@ -83,7 +89,7 @@ class _FeedState extends State<Feed> {
                 )
               ],
             ),
-            LikeButton(true, 10)
+            LikeButton()
           ],
         ));
   }
