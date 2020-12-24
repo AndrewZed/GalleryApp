@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:galleryapp/res/res.dart';
 
@@ -13,6 +14,7 @@ class Description extends StatelessWidget {
         child: (Text(description,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: AppStyles.h3.copyWith(color: AppColors.black))));
+            style: Theme.of(context).textTheme.headline3.copyWith(
+                color: AppColors.manatee))));
   }
 }

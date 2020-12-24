@@ -47,13 +47,9 @@ class _FeedState extends State<Feed> {
         children: <Widget>[
           GestureDetector(
               onTap: () {
-                Navigator.pushNamed(
-                    context,
-                    '/fullScreenImage',
+                Navigator.pushNamed(context, '/fullScreenImage',
                     arguments: FullScreenImageArguments(
-                        routeSettings: RouteSettings(
-                          arguments: 'Some title'
-                        ),
+                        routeSettings: RouteSettings(arguments: 'Some title'),
                         heroTag: heroTag,
                         altDescription: altDescription,
                         userPhoto: userPhoto,
@@ -81,9 +77,11 @@ class _FeedState extends State<Feed> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(name, style: AppStyles.h2Black),
+                    Text(name, style: Theme.of(context).textTheme.headline2),
                     Text(userName,
-                        style: AppStyles.h5Black
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
                             .copyWith(color: AppColors.manatee)),
                   ],
                 )

@@ -74,7 +74,11 @@ class _FullScreenImageState extends State<FullScreenImage>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(height: 36, width: 105, child: LikeButton()),
+                    Container(
+                      height: 36,
+                      width: 65,
+                      child: LikeButton(),
+                    ),
                     SizedBox(width: 14),
                     Expanded(child: _buildButton('Save', () {})),
                     SizedBox(width: 14),
@@ -148,7 +152,7 @@ class _FullScreenImageState extends State<FullScreenImage>
           Navigator.of(context).pop();
         },
       ),
-      title: Text('Photo', style: AppStyles.h1Black),
+      title: Text('Photo', style: Theme.of(context).textTheme.headline1),
       backgroundColor: AppColors.white,
       centerTitle: true,
     );
@@ -189,9 +193,12 @@ class _FullScreenImageState extends State<FullScreenImage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(widget.name, style: AppStyles.h2Black),
+                        Text(widget.name,
+                            style: Theme.of(context).textTheme.headline2),
                         Text(widget.userName,
-                            style: AppStyles.h5Black
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
                                 .copyWith(color: AppColors.manatee)),
                       ],
                     ))
